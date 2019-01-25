@@ -21,4 +21,15 @@ var d = _objectSpread({
   c: 5
 });
 
+class A {
+  b() {
+    return this.c();
+  }
+
+  c() {
+    return () => 5;
+  }
+
+}
+
 var App = () => React.createElement("div", null, "asd");

@@ -16,4 +16,15 @@ const d = {
   c: 5
 };
 
+class A {
+  b() {
+    return this.c();
+  }
+
+  c() {
+    return () => 5;
+  }
+
+}
+
 const App = () => React.createElement("div", null, "asd");
