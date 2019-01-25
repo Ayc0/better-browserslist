@@ -33,13 +33,22 @@ const lines = type => {
 
 const cut = nb => parseInt(nb * 100) / 100;
 
-console.log("source file length: " + fs.readFileSync("./inputcode.js").toString().length + " chars");
+let readme = "# Better browserslist\n";
+
+const initSize = fs.readFileSync("./inputcode.js").toString().length;
+
+readme += `source file length: _**${initSize}**_ chars`;
 
 for (let target in targets) {
-  console.group(target);
-  console.log("browserslist query:", targets[target]);
-  console.log("browser coverage: " + cut(browserslist.coverage(browserslist(targets[target]))) + "%");
-  console.log(lines(target, targets[target]) + " chars");
-  console.log("");
-  console.groupEnd();
+  const size = lines(target, targets[target]);
+  readme += `
+
+## ${target}
+
+- browserslist query: \`${targets[target]}\`
+- browser coverage: _**${cut(browserslist.coverage(browserslist(targets[target])))}%**_
+- [output file](./build/${target}.js): _${size} chars_ **(x${cut(size / initSize)})**
+`;
 }
+
+fs.writeFileSync("./README.md", readme);
