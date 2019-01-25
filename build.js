@@ -4,13 +4,7 @@ const { transformFileSync } = require("@babel/core");
 
 const browsers = require("./browserslist.js");
 
-const targets = {
-  modern: browsers.modern.join(", "),
-  regular: browsers.regular.join(", "),
-  not_modern: ["cover 100%", ...browsers.modern].join(", not "),
-  not_regular: ["cover 100%", ...browsers.regular].join(", not "),
-  default: "defaults"
-};
+const targets = require("./targets");
 
 const config = bl => ({
   presets: [
@@ -66,10 +60,14 @@ readme += `
 ## How to use
 
 \`\`\`js
-const { modern, regular, old } = require('better-browserslist');
-
-// You can use one of those config in your own babel config.
+const { modern, regular, regular_strict, not_modern, not_regular, old, oldest, defaults } = require('better-browserslist');
 \`\`\`
+
+You can use one of those config in your own babel config.
+
+**old** and **oldest** are respective aliases to _regular_strict_ and _not_regular_
+
+I recommend using **modern**, **old** or **older**.
 `;
 
 fs.writeFileSync("./README.md", readme);

@@ -24,6 +24,13 @@ Here is an example of different transpilations of a same input file with differe
 - [output file](./build/regular.js): _1033 chars_ **(x3.65)**
 
 
+### regular_strict
+
+- browserslist query: `edge >= 13, firefox >= 50, and_ff >= 50, chrome >= 49, and_chr >= 49, ios >= 9.4, safari >= 9.4, samsung >= 5, and_uc >= 11.8, opera >= 40, op_mob >= 40, baidu >= 7, not firefox >= 55, not and_ff >= 55, not chrome >= 60, not and_chr >= 60, not ios >= 12, not safari >= 12, not samsung >= 5, not and_uc >= 11.8, not opera >= 47, not op_mob >= 47, not baidu >= 7`
+- browser coverage: _**7.65%**_
+- [output file](./build/regular_strict.js): _1033 chars_ **(x3.65)**
+
+
 ### not_modern
 
 - browserslist query: `cover 100%, not firefox >= 55, not and_ff >= 55, not chrome >= 60, not and_chr >= 60, not ios >= 12, not safari >= 12, not samsung >= 5, not and_uc >= 11.8, not opera >= 47, not op_mob >= 47, not baidu >= 7`
@@ -38,17 +45,21 @@ Here is an example of different transpilations of a same input file with differe
 - [output file](./build/not_regular.js): _2372 chars_ **(x8.38)**
 
 
-### default
+### defaults
 
 - browserslist query: `defaults`
 - browser coverage: _**87.34%**_
-- [output file](./build/default.js): _2372 chars_ **(x8.38)**
+- [output file](./build/defaults.js): _2372 chars_ **(x8.38)**
 
 
 ## How to use
 
 ```js
-const { modern, regular, old } = require('better-browserslist');
-
-// You can use one of those config in your own babel config.
+const { modern, regular, regular_strict, not_modern, not_regular, old, oldest, defaults } = require('better-browserslist');
 ```
+
+You can use one of those config in your own babel config.
+
+**old** and **oldest** are respective aliases to _regular_strict_ and _not_regular_
+
+I recommend using **modern**, **old** or **older**.
