@@ -17,4 +17,6 @@ class A {
   }
 }
 
+for (const e of f) {}
+
 const App = () => <div>asd</div>;
